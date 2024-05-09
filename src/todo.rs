@@ -1,4 +1,4 @@
-struct Todo {
+pub struct Todo {
     id: i32,
     title: String,
     description: String,
@@ -8,12 +8,18 @@ struct Todo {
 impl Todo {
     fn new (id: i32,
             title: String,
-            desciption: String) -> Todo {
+            description: String) -> Todo {
         return Todo {
-            id: id,
-            title: title,
-            description: desciption,
+            id,
+            title,
+            description,
             status: Status::Incomplete
         };
     }
+}
+
+pub enum Status {
+    Complete,
+    InProgress,
+    Incomplete
 }

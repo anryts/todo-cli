@@ -1,12 +1,5 @@
-use clap::{command, Arg, ArgMatches, Command};
-
-
-enum Status {
-    Complete, 
-    InProgres,
-    Incomplete
-}
-
+mod todo_service;
+mod todo;
 
 fn main() {
     

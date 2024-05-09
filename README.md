@@ -42,7 +42,7 @@ my checklist for this project:
 - [x] create todo struct
 - [x] create todo status enum
 - [ ] create todo service
-  - [ ] add todo
+  - [x] add todo
   - [ ] list todos
   - [ ] complete todo
   - [ ] delete todo
