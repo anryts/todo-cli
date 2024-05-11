@@ -6,7 +6,7 @@ pub struct Todo {
 }
 
 impl Todo {
-    fn new (id: i32,
+    pub fn new (id: i32,
             title: String,
             description: String) -> Todo {
         return Todo {
