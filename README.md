@@ -50,15 +50,16 @@ my checklist for this project:
   - [ ] search todo
 - [ ] create command line interface
   - [x] add todo - bash command: `todo add --title Learn Rust --description Learn rust programming language`
-  - [ ] list todos - bash command: `todo list --status "incomplete"`
+  - [ ] list todos - bash command: `todo list --status 1`
+    - [ ] add more advanced print
   - [ ] complete todo - bash command: `todo complete --id 1`
   - [ ] delete todo - bash command: `todo delete --id 1`
   - [ ] update todo - bash command: `todo update --id 1 --title "Learn Rust" --description "Learn rust programming language"`
   - [ ] search todo - bash command: `todo search --title "Learn Rust"`
   - [ ] help - bash command: `todo help`
-- [ ] create json file
-- [ ] read json file
-- [ ] write json file
+- [ ] create json file service
+  - [ ] read json file
+  - [ ] write json file
 - [ ] add help command
 
 ## CLI commands

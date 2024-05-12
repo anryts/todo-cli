@@ -1,4 +1,5 @@
-use clap::{Parser, Subcommand};
+use clap::{Parser, Subcommand, };
+use todo::Status;
 
 use crate::todo::Todo;
 use crate::todo_service::TodoService;
@@ -15,12 +16,17 @@ struct Args {
 #[derive(Subcommand, Debug, Clone)]
 enum Commands {
     Add {
-        #[clap(short, long)]
+        #[clap(short = 't', long)]
         title: String,
-        #[clap(short, long)]
+        #[clap(short = 'd', long)]
         description: String,
     },
-    List,
+    List {
+        #[clap(short = 's', long)]
+        status: Status,
+        #[clap(short = 'c', long)]
+        count: i32
+    },
     Complete,
     Delete,
     Update,
@@ -36,7 +42,14 @@ fn main() {
                      => { let item = Todo::new(todo_service.get_count(), title, description);
                         todo_service.add_todo(item);
                     },
-        Commands::List => todo!(),
+        Commands::List {status, count} 
+            => {//TODO rewrite this  
+                let items = todo_service.get_todos(status, count);
+                for _val in items.iter() {
+                    println!("id:{0} title:{1}", _val.id, _val.title) 
+                }
+         
+         }
         Commands::Complete => todo!(),
         Commands::Delete => todo!(),
         Commands::Update => todo!(),
