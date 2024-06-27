@@ -1,6 +1,6 @@
 use crate::todo::{Todo, Status};
 use serde::{Serialize, Deserialize};
-use serde_json::Result;
+use serde_json;
 
 pub struct TodoService {
     items: Vec<Todo>,
@@ -16,7 +16,9 @@ impl TodoService {
     pub fn add_todo(&mut self, item: Todo) {
         self.items.push(item);
         //write into json file
-        let serialized = serde_json
+        let json_data = serde_json :: to_string_pretty(&self.items).unwrap();
+        std::fs::write("data.json", json_data)
+            .expect("Can't write data into file");
     }
 
     pub fn get_todos(&mut self, status: Status, count: i32) -> Vec<Todo> {

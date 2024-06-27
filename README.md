@@ -35,7 +35,7 @@ the commands will be:
 - search todo
 - help
 
-i want to create more user friendly interface, so i will use [dialoguer](https://docs.rs/dialoguer/0.7.1/dialoguer/) crate to create interactive command line interface.
+I want to create more user-friendly interface, so I will use [dialoguer](https://docs.rs/dialoguer/0.7.1/dialoguer/) crate to create interactive command line interface.
 
 my checklist for this project:
 
@@ -64,16 +64,21 @@ my checklist for this project:
 
 ## CLI commands
 
-i will call it from terminal like this:
+I will call it from terminal like this:
 
 ```bash
-$ todo add --title "Learn Rust" --description "Learn rust programming language"
+$ todo add --title "Learn Rust" --description "Learn Rust programming language"
 $ todo list --status "incomplete"
 $ todo complete --id 1
 $ todo delete --id 1
-$ todo update --id 1 --title "Learn Rust" --description "Learn rust programming language"
+$ todo update --id 1 --title "Learn Rust" --description "Learn Rust programming language"
 $ todo search --title "Learn Rust"
 $ todo help
 ```
 
 ## in future, need to do more fancy TUI
+
+
+## thanks to my memory, I will write some shortcuts for me in future
+  - how to call something, examples:  
+    - 
