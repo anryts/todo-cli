@@ -1,5 +1,5 @@
+use std::fs;
 use crate::todo::{Todo, Status};
-use serde::{Serialize, Deserialize};
 use serde_json;
 
 pub struct TodoService {
@@ -8,8 +8,14 @@ pub struct TodoService {
 
 impl TodoService {
     pub fn new() -> TodoService {
+        //read from file
+        let items = {
+            let res = fs::read_to_string("data.json")
+                .expect("Can't read");
+            serde_json::from_str::<Vec<Todo>>(&res).unwrap()
+        };
         return TodoService {
-            items: Vec::new()
+            items
         };
     }
 
@@ -28,9 +34,25 @@ impl TodoService {
         .cloned()
         .collect();
     }
+    
+    pub fn change_status(&mut self, status: Status, id: i32)  {
+        //in place mutation be like this 
+         if let Some(task) = self.items
+            .iter_mut()
+            .find(|task| task.id == id) {
+            //modify
+            task.status = status;
+        }
+    }
 
     pub fn get_count(&mut self) -> i32 {
-        return self.items.len() as i32; 
+        //read from file and find len()
+        let list_todo = {
+            let res = fs::read_to_string("data.json")
+                .expect("Can't read");
+            serde_json::from_str::<Vec<Todo>>(&res).unwrap()
+        };
+        return list_todo.len() as i32; 
     }
 }
 

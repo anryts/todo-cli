@@ -43,8 +43,7 @@ impl FromStr for Status {
             _ => Err(())
         }
     }
-}
-
+} 
 impl fmt::Display for Status {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match *self {

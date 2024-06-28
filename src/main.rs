@@ -1,5 +1,6 @@
 use clap::{Parser, Subcommand, };
 use todo::Status;
+use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 
 use crate::todo::Todo;
 use crate::todo_service::TodoService;
@@ -22,12 +23,14 @@ enum Commands {
         description: String,
     },
     List {
-        #[clap(short = 's', long)]
+        #[clap(short = 's', long, default_value = "todo")]
         status: Status,
-        #[clap(short = 'c', long)]
+        #[clap(short = 'c', long, default_value = "10")]
         count: i32
     },
-    Complete,
+    Complete {
+        id: i32,
+    },
     Delete,
     Update,
     Search
@@ -43,19 +46,24 @@ fn main() {
                         todo_service.add_todo(item);
                     },
         Commands::List {status, count} 
-            => {//TODO rewrite this  
+            => {  
                 let items = todo_service.get_todos(status, count);
+                let mut stdout = StandardStream::stdout(ColorChoice::Always);
+                stdout.set_color(ColorSpec::new().set_fg(Some(Color::Magenta)));
                 for _val in items.iter() {
-                    println!("id:{0} title:{1}", _val.id, _val.title) 
+                    println!("id: {0} title: {1}\ndescription: {2}\n",
+                             _val.id, _val.title, _val.description) 
                 }
          
          }
-        Commands::Complete => todo!(),
+        Commands::Complete {id} => {
+            todo_service.change_status(Status::Done, id)
+        }
         Commands::Delete => todo!(),
         Commands::Update => todo!(),
         Commands::Search => todo!(),
                     
     }
 
-    println!("{:?}", todo_service.get_count());
+    println!("\ntotal count: {:?}", todo_service.get_count());
 }
